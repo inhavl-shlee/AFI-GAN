@@ -1,0 +1,35 @@
+_BASE_: "./Base-RCNN-FPN-AFIGAN.yaml"
+MODEL:
+  WEIGHTS: ""
+  BACKBONE:
+    NAME: "build_resnest_pafpn_sr_backbone"
+  RESNETS:
+    DEPTH: 101
+    STRIDE_IN_1X1: False
+    RADIX: 2
+    NORM: "SyncBN"
+  FPN:
+    NORM: "SyncBN"
+  ROI_HEADS:
+    NAME: CascadeROIHeads
+  ROI_BOX_HEAD:
+    NAME: "FastRCNNConvFCHead"
+    NUM_CONV: 4
+    NUM_FC: 1
+    NORM: "SyncBN"
+    CLS_AGNOSTIC_BBOX_REG: True
+  ROI_MASK_HEAD:
+    NORM: "SyncBN"
+  RPN:
+    POST_NMS_TOPK_TRAIN: 2000
+  MASK_ON: True
+  PIXEL_MEAN: [123.68, 116.779, 103.939]
+  PIXEL_STD: [58.393, 57.12, 57.375]
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val",)
+INPUT:
+  FORMAT: "RGB"
+TEST:
+  AUG:
+    ENABLED: False

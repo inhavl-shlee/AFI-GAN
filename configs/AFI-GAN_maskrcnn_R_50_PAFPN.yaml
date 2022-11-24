@@ -1,0 +1,16 @@
+_BASE_: "./Base-RCNN-FPN-AFIGAN.yaml"
+MODEL:
+  WEIGHTS: ""
+  BACKBONE:
+    NAME: "build_resnet_pafpn_sr_backbone"
+  RESNETS:
+    DEPTH: 50
+  MASK_ON: True
+SOLVER:
+  IMS_PER_BATCH: 8
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val",)
+TEST:
+  AUG:
+    ENABLED: False

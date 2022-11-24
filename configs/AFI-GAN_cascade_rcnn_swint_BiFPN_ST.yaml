@@ -1,0 +1,42 @@
+_BASE_: "./Base-RCNN-FPN-AFIGAN.yaml"
+MODEL:
+  WEIGHTS: ""
+  BACKBONE:
+    NAME: "build_swint_bifpn_sr_backbone"
+    FREEZE_AT: -1
+  RESNETS:
+    DEPTH: 50
+  SWINT:
+    OUT_FEATURES: [ "stage3", "stage4", "stage5" ]
+    EMBED_DIM: 192
+    DEPTHS: [2, 2, 18, 2]
+    NUM_HEADS: [6, 12, 24, 48]
+    WINDOW_SIZE: 12
+  BIFPN:
+    IN_FEATURES: [ "stage3", "stage4", "stage5" ]
+    FPN_REPEAT: 7
+  ROI_HEADS:
+    NAME: CascadeROIHeads
+    IN_FEATURES: [ "p3", "p4", "p5", "p6" ]
+  ROI_BOX_HEAD:
+    NAME: "FastRCNNConvFCHead"
+    NUM_CONV: 4
+    NUM_FC: 1
+    NORM: "SyncBN"
+    CLS_AGNOSTIC_BBOX_REG: True
+  ROI_MASK_HEAD:
+    NORM: "SyncBN"
+  RPN:
+    IN_FEATURES: [ "p3", "p4", "p5", "p6", "p7" ]
+    POST_NMS_TOPK_TRAIN: 2000
+  SRF_FREEZE: False
+  PIXEL_MEAN: [123.675, 116.28, 103.53]
+  PIXEL_STD: [58.393, 57.12, 57.375]
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val",)
+INPUT:
+  FORMAT: "RGB"
+TEST:
+  AUG:
+    ENABLED: False
