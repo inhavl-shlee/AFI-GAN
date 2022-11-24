@@ -13,9 +13,9 @@ To combine features with different resolutions,  coarser feature maps  are upsam
 However, the simple interpolation incurs often noisy and blurred features. 
 To resolve this, we propose a novel adversarially-trained interpolator, and which can substitute for the traditional interpolation effortlessly. 
 In specific, we  design  AFI-GAN consisting of an AF interpolator and a feature patch discriminator. 
-For generic and target-specific AF learning, we design AFI-GAN losses and train an AF interpolator by minimizing the discrepancy between upsampled and target features and the losses for target detection tasks. 
-In particular, we combine the proposed AFI-GAN with the recent multi-scale  networks (i.e., BiFPN, PAFAN, FPN) and detectors (i.e., FCOS, CenterMask, Cascade R-CNN, RetinaNet, Mask R-CNN, and Faster-RCNN). 
-From the  extensive studies, we prove the effectiveness and flexibility of our AF interpolator, and achieve the better box and masks APs by **2.2%** and **1.6%** on average compared to the same detectors using other interpolation.
+In addition, we present a progressive adversarial learning and AFI-GAN losses to generate multi-scale features for downstream detection tasks. However, we can also finetune the proposed AFI-GAN with the recent multi-scale detectors without the adversarial learning once a pre-trained AF interpolator is provided. 
+We prove the effectiveness and flexibility of our AF interpolator, and achieve the better box and mask APs by **2.2%** and **1.6%** on average compared to using other interpolation. 
+Moreover, we achieve an impressive detection score of **57.3%** mAP on the MSCOCO dataset.
 
 ### Highlights
 
