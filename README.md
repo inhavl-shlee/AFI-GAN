@@ -113,6 +113,23 @@ python3 run_net.py\
 
 ![Figures_002](Figures/Qualitative_Results_GCAM.png)
 
+## Citation
+Please cite our paper if you find this repo helpful:
+
+```BibTeX
+@article{lee_2023_pr_afigan,
+title = {AFI-GAN: Improving feature interpolation of feature pyramid networks via adversarial training for object detection},
+journal = {Pattern Recognition},
+volume = {138},
+pages = {109365},
+year = {2023},
+issn = {0031-3203},
+doi = {https://doi.org/10.1016/j.patcog.2023.109365},
+url = {https://www.sciencedirect.com/science/article/pii/S0031320323000663},
+author = {Seong-Ho Lee and Seung-Hwan Bae}
+}
+```
+
 
 ## Thanks to
 
