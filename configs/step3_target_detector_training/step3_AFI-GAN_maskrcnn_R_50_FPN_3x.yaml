@@ -1,0 +1,15 @@
+_BASE_: "../Base-RCNN-FPN-AFIGAN.yaml"
+MODEL:
+  WEIGHTS: ""
+  AF_EXTRACTOR_WEIGHTS: ""
+  RESNETS:
+    DEPTH: 50
+  MASK_ON: True
+SOLVER:
+  IMS_PER_BATCH: 2
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val",)
+TEST:
+  AUG:
+    ENABLED: False

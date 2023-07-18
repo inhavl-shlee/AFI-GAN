@@ -5,9 +5,10 @@ from detectron2.config import CfgNode as CN
 _C.MODEL.GUIDE_ARCHITECTURE = ""
 
 _C.MODEL.GUIDE_WEIGHTS = ""
-_C.MODEL.SRF_GEN_WEIGHTS = ""
-_C.MODEL.SRF_DIS_WEIGHTS = ""
-_C.MODEL.SRF_FREEZE = False
+_C.MODEL.AFI_GEN_WEIGHTS = ""
+_C.MODEL.AFI_DIS_WEIGHTS = ""
+_C.MODEL.AF_EXTRACTOR_WEIGHTS = ""
+_C.MODEL.AFI_FREEZE = False
 
 # ---------------------------------------------------------------------------- #
 # Guide_Backbone options
