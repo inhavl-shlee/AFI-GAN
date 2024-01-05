@@ -1,0 +1,23 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+MODEL:
+  META_ARCHITECTURE: "SuperResolutionFeature"
+  GUIDE_ARCHITECTURE: "RCNN_FPN_only"
+  GUIDE_WEIGHTS: "/AFI-GAN/Model_ZOO/Maskrcnn_R50_FPN_x3/model_final_f10217.pkl"
+#  GUIDE_WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+#  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  WEIGHTS: "/AFI-GAN/Model_ZOO/Maskrcnn_R50_FPN_x3/model_final_f10217.pkl"
+  AFI_DIS_WEIGHTS: ""
+  AFI_GEN_WEIGHTS: ""
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val",)
+#  TRAIN: ("coco_2017_val_100",)
+SOLVER:
+  IMS_PER_BATCH: 2
+  BASE_LR: 0.001
+  STEPS: (120000, )
+  MAX_ITER: 150000
+  CHECKPOINT_PERIOD: 10000
