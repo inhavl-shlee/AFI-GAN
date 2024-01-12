@@ -1,0 +1,27 @@
+_BASE_: "../Base-RCNN-FPN-AFIGAN.yaml"
+MODEL:
+  META_ARCHITECTURE: "GeneralizedRCNN_AFExtractor"
+  GUIDE_ARCHITECTURE: "RCNN_FPN_only"
+  GUIDE_WEIGHTS: "/AFI-GAN/Model_ZOO/Maskrcnn_R50_FPN_x3/model_final_f10217.pkl"
+  WEIGHTS: "/AFI-GAN/Model_ZOO/Maskrcnn_R50_FPN_x3/model_final_f10217.pkl"
+  AFI_DIS_WEIGHTS: "/AFI-GAN/output/D_0/model_final.pth"
+  AFI_GEN_WEIGHTS: "/AFI-GAN/output/G_0/model_final.pth"
+  MASK_ON: True
+  AFI_FREEZE: False
+  RESNETS:
+    DEPTH: 50
+  ANCHOR_GENERATOR:
+    SIZES: [[16], [32], [64], [128], [256]]
+DATASETS:
+#  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val",)
+  TRAIN: ("coco_2017_val_100",)
+SOLVER:
+#  IMS_PER_BATCH: 4
+#  BASE_LR: 0.005
+#  STEPS: (280000, 330000)
+#  MAX_ITER: 360000
+  IMS_PER_BATCH: 2
+  BASE_LR: 0.001
+  STEPS: (120000, )
+  MAX_ITER: 150000

@@ -64,14 +64,14 @@ class PAFPN_AFIGAN(Backbone):
         # PANET
         downsample_convs = []
 
-        srf_module = G_rdb.Generator(n_residual_dense_blocks=3)
+        afi_module = G_rdb.Generator(n_residual_dense_blocks=3)
 
-        if cfg.MODEL.SRF_FREEZE:
-            for _idx, p in enumerate(srf_module.parameters()):
+        if cfg.MODEL.AFI_FREEZE:
+            for _idx, p in enumerate(afi_module.parameters()):
                 p.requires_grad = False
 
-        self.add_module("srf_module", srf_module)
-        self.srf_module = srf_module
+        self.add_module("afi_module", afi_module)
+        self.afi_module = afi_module
 
         use_bias = norm == ""
         for idx, in_channels in enumerate(in_channels):
@@ -173,7 +173,7 @@ class PAFPN_AFIGAN(Backbone):
             x[1:], self.lateral_convs[1:]
         ):
             # top_down_features = F.interpolate(prev_features, scale_factor=2, mode="nearest")
-            top_down_features = self.srf_module(prev_features)
+            top_down_features = self.afi_module(prev_features)
             lateral_features = lateral_conv(features)
 
             prev_features = lateral_features + top_down_features

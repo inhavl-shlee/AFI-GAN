@@ -267,13 +267,13 @@ class BiFPN_AFIGAN(Backbone):
         first_layer = True
 
         # Common layers
-        srf_module = G_rdb.Generator(n_residual_dense_blocks=3)
-        if cfg.MODEL.SRF_FREEZE:
-            for _idx, p in enumerate(srf_module.parameters()):
+        afi_module = G_rdb.Generator(n_residual_dense_blocks=3)
+        if cfg.MODEL.AFI_FREEZE:
+            for _idx, p in enumerate(afi_module.parameters()):
                 p.requires_grad = False
 
-        self.add_module("srf_module", srf_module)
-        self.srf_module = srf_module
+        self.add_module("afi_module", afi_module)
+        self.afi_module = afi_module
         self._downsample = MaxPool2d(3, 2)
         self._swish = MemoryEfficientSwish()
         # parameters
@@ -537,7 +537,7 @@ class BiFPN_AFIGAN(Backbone):
         return sum(x_ * w for x_, w in zip(inputs, weight))
 
     def _upsample(self, x):
-        return self.srf_module(x)
+        return self.afi_module(x)
 
     def _feature_funsion(self, layer_idx,cur_feature, top_feature, indice=-1):
         top_feature = self._upsample(top_feature)
