@@ -70,7 +70,7 @@ class PAFPN_AFIGAN(Backbone):
             for _idx, p in enumerate(afi_module.parameters()):
                 p.requires_grad = False
 
-        self.add_module("afi_module", afi_module)
+        self.add_module("srf_module", afi_module)
         self.afi_module = afi_module
 
         use_bias = norm == ""

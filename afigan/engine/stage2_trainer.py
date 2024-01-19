@@ -118,9 +118,12 @@ class Multi_Scale_AF_Extractor_Trainer(SimpleTrainer):
         del checkpoint["iteration"]
         self.D_checkpointer._load_model(checkpoint)
 
+        os.makedirs(os.path.join(cfg.OUTPUT_DIR, 'AFExtractor'), exist_ok=True)
+        AF_output_dir = os.path.join(cfg.OUTPUT_DIR, 'AFExtractor')
+
         self.checkpointer = AF_DetectionCheckpointer(
             model,
-            cfg.OUTPUT_DIR,
+            AF_output_dir,
             optimizer=optimizer,
             scheduler=self.scheduler,
         )

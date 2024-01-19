@@ -272,7 +272,7 @@ class BiFPN_AFIGAN(Backbone):
             for _idx, p in enumerate(afi_module.parameters()):
                 p.requires_grad = False
 
-        self.add_module("afi_module", afi_module)
+        self.add_module("srf_module", afi_module)
         self.afi_module = afi_module
         self._downsample = MaxPool2d(3, 2)
         self._swish = MemoryEfficientSwish()

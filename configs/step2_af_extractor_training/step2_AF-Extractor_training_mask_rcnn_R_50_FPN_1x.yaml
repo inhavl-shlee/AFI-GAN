@@ -13,9 +13,9 @@ MODEL:
   ANCHOR_GENERATOR:
     SIZES: [[16], [32], [64], [128], [256]]
 DATASETS:
-#  TRAIN: ("coco_2017_train",)
+  TRAIN: ("coco_2017_train",)
   TEST: ("coco_2017_val",)
-  TRAIN: ("coco_2017_val_100",)
+#  TRAIN: ("coco_2017_val_100",)
 SOLVER:
 #  IMS_PER_BATCH: 4
 #  BASE_LR: 0.005

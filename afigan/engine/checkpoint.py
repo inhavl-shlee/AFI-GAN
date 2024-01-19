@@ -91,7 +91,7 @@ class AF_DetectionCheckpointer(Checkpointer):
         original_keys = sorted(weights.keys())
         layer_keys = copy.deepcopy(original_keys)
 
-        layer_keys = [k.replace("Generators", "backbone.afi_module.Generators") for k in layer_keys]
+        layer_keys = [k.replace("Generators", "backbone.srf_module.Generators") for k in layer_keys]
 
         # --------------------------------------------------------------------------
         # Done with replacements
@@ -117,7 +117,7 @@ class AF_DetectionCheckpointer(Checkpointer):
         new_weights = {}
         new_keys_to_original_keys = {}
         for orig, renamed in zip(original_keys, layer_keys):
-            if re.search('afi_module', renamed):
+            if re.search('srf_module', renamed):
                 new_keys_to_original_keys[renamed] = orig
 
                 new_weights[renamed] = weights[orig]
