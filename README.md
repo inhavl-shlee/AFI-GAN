@@ -74,7 +74,29 @@ pip install dataclasses==0.8
 
 ## Training
 
-Training code will be available soon.
+As we described, we improve the interpolation ability of AFI-GAN by using progessive training.
+To this end, we provide three scripts: `stage1_train.py`, `stage2_train.py`, `stage3_train.py` implemented for "Step1. AFI-GAN Training", "Step2. Multi-Scale AF Extractor Training", and "Step3. Target Detector Training", respectively.
+
+We also provide three configuration files for our progressive adversarial learning. You can use them as references to train another models as you want.
+
+For example, to train our AFI-GAN, firstly **AFI-GAN Training** run:
+```bash
+python3 stage1_train.py\
+        --num-gpus 4\
+        --config-file configs/step1_afigan_training/step1_AFI-GAN_training_mask_rcnn_R_50_FPN_1x.yaml
+```
+Then, **Multi-Scale AF Extractor Training** run:
+```bash
+python3 stage2_train.py\
+        --num-gpus 4\
+        --config-file configs/step2_af_extractor_training/step2_AF-Extractor_training_mask_rcnn_R_50_FPN_1x.yaml
+```
+Finally, **Target Detector Training** run:
+```bash
+python3 stage3_train.py\
+        --num-gpus 4\
+        --config-file configs/step3_target_detector_training/step3_AFI-GAN_maskrcnn_R_50_FPN_3x.yaml
+```
 
 ## Evaluation
 
