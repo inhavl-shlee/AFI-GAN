@@ -1,0 +1,16 @@
+_BASE_: "../Base-RCNN-FPN-AFIGAN.yaml"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  AF_EXTRACTOR_WEIGHTS: "/AFI-GAN/step2_AF-Extractor_training_mask_rcnn_R_50_FPN_1x/AFExtractor/model_final.pth"
+  RESNETS:
+    DEPTH: 50
+  MASK_ON: True
+SOLVER:
+  IMS_PER_BATCH: 16
+  BASE_LR: 0.02
+  STEPS: (210000, 250000)
+  MAX_ITER: 270000
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val",)
+

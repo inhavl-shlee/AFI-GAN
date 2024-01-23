@@ -1,0 +1,2 @@
+timm==0.5.4
+dataclasses==0.8

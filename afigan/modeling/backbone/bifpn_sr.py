@@ -268,7 +268,7 @@ class BiFPN_AFIGAN(Backbone):
 
         # Common layers
         srf_module = G_rdb.Generator(n_residual_dense_blocks=3)
-        if cfg.MODEL.SRF_FREEZE:
+        if cfg.MODEL.AFI_FREEZE:
             for _idx, p in enumerate(srf_module.parameters()):
                 p.requires_grad = False
 

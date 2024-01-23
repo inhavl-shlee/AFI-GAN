@@ -1,4 +1,4 @@
-_BASE_: "./Base-RCNN-FPN-AFIGAN.yaml"
+_BASE_: "../Base-RCNN-FPN-AFIGAN.yaml"
 MODEL:
   WEIGHTS: ""
   BACKBONE:

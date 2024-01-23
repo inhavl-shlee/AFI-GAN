@@ -66,7 +66,7 @@ class PAFPN_AFIGAN(Backbone):
 
         srf_module = G_rdb.Generator(n_residual_dense_blocks=3)
 
-        if cfg.MODEL.SRF_FREEZE:
+        if cfg.MODEL.AFI_FREEZE:
             for _idx, p in enumerate(srf_module.parameters()):
                 p.requires_grad = False
 
@@ -172,7 +172,6 @@ class PAFPN_AFIGAN(Backbone):
         for features, lateral_conv in zip(
             x[1:], self.lateral_convs[1:]
         ):
-            # top_down_features = F.interpolate(prev_features, scale_factor=2, mode="nearest")
             top_down_features = self.srf_module(prev_features)
             lateral_features = lateral_conv(features)
 

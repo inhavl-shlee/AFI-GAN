@@ -1,8 +1,8 @@
-_BASE_: "./Base-RCNN-FPN-AFIGAN.yaml"
+_BASE_: "../Base-RCNN-FPN-AFIGAN.yaml"
 MODEL:
   WEIGHTS: ""
   BACKBONE:
-    NAME: "build_resnest_fpn_sr_backbone"
+    NAME: "build_resnest_pafpn_sr_backbone"
   RESNETS:
     DEPTH: 101
     STRIDE_IN_1X1: False
